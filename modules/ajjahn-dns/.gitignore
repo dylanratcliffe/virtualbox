@@ -1,0 +1,7 @@
+vendor/
+.bundle
+.*.sw?
+pkg
+.rspec_system
+.vagrant
+/.project
