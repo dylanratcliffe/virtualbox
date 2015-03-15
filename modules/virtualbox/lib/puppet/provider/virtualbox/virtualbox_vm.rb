@@ -51,4 +51,29 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
       # the exists? thing
       vboxmanage(['unregistervm', resource[:name], '--delete'])
     end
+
+    def ostype
+    end
+
+    # This gets all the info from the vm and returns it in a hash
+    # to see an example run: vboxmanage showvminfo <vm_name> --machinereadable
+    def get_vm_info(name)
+      output = vboxmanage('showvminfo', name, '--machinereadable')
+
+      # Split this on the '=' sign
+      split_output = []
+      output.each do |line|
+      	split_output << line.split('=')
+      end
+
+      # Map the array to a hash
+      info_hash = Hash[split_output.map {|key, value| [key, value]}]
+
+      # Remove any literal quotes
+      info_hash.each do |key, value|
+      	info_hash[key] = value.tr("\"","")
+      end
+
+      info_hash
+    end
 end

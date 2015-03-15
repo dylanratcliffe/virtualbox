@@ -9,8 +9,7 @@ Puppet::Type.newtype(:virtual_machine) do
   # ... the code ...
   newparam(:name, :namevar => true) do
   	desc "The name of the VM, must not contain spaces"
-  	newvalues(/[.\S]+/)
-  	
+  	newvalues(/[\S]+/)
   end
 
   #newproperty(:groups, :array_matching => :all) do # :array_matching defaults to :first
