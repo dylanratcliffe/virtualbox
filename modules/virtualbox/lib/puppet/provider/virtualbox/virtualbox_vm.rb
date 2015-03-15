@@ -47,6 +47,8 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
     end
 
     def destroy
-        
+      # The lack of boolean casting here is based on the same logic as
+      # the exists? thing
+      vboxmanage(['unregistervm', resource[:name], '--delete'])
     end
 end
