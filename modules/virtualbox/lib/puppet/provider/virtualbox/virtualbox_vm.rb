@@ -26,14 +26,19 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
       basefolder_flag = '--basefolder' if resource[:basefolder]
       uuid_flag = '--uuid' if resource[:uuid]
 
-      # Construct command sections
-      if resource[:register]
-      	registerflag = '--register'
-      else
-      	registerflag = nil
-      end
+      # Execute vboxmanage to create the vm
+      output = vboxmanage(['createvm',
+      	name_flag, resource[:name],
+      	groups_flag, resource[:groups],
+      	ostype_flag, resource[:ostype],
+      	register_flag,
+      	basefolder_flag, resource[:basefolder],
+      	uuid_flag, resource[:uuid]])
 
-      vboxmanage(['createvm', '--name', resource[:name],])
+      # Catch and deal with non zero exit codes
+
+      # Read back the result and make sure that it is all G
+
     end
 
     def destroy
