@@ -44,6 +44,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
         Puppet.debug("#vboxmanage had an error -> #{e.inspect}")
         throw e
       end
+      output
     end
 
     def destroy
