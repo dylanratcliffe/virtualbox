@@ -7,7 +7,7 @@ Puppet::Type.newtype(:virtual_machine) do
   ensurable
 
   # ... the code ...
-  newparam(:name) do
+  newparam(:name, :namevar => true) do
   	desc "The name of the VM, must not contain spaces"
   	validate do |value|
   	  unless value =~ /[.\S]+/
