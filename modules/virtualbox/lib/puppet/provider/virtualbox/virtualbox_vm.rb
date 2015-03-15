@@ -150,6 +150,16 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
       friendly_names[settings['osfamily']]
     end
 
+    def ostype=(value)
+      # THIS IS WHAT I AM UP TO:
+      # Resources: 
+      # http://garylarizza.com/blog/2013/11/26/fun-with-providers-part-2/
+      # https://www.virtualbox.org/manual/ch08.html#idp90667008
+      # 
+    end
+
+    private
+    
     # This gets all the info from the vm and returns it in a hash
     # to see an example run: vboxmanage showvminfo <vm_name> --machinereadable
     def get_vm_info(name)
