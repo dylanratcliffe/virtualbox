@@ -9,14 +9,18 @@ Puppet::Type.newtype(:virtual_machine) do
   # ... the code ...
   newparam(:name, :namevar => true) do
   	desc "The name of the VM, must not contain spaces"
-  	validate do |value|
-  	  unless value =~ /[.\S]+/
-  	  	raise ArgumentError, "%s is not a valid name" % value
-  	  end
+  	newvalues(/[.\S]+/)
+  	
   end
 
   newproperty(:groups, :array_matching => :all) do # :array_matching defaults to :first
     desc "Groups that the VM will belong to. (Optional)"
+    # This little gem makes sure that when we are comparing the arrays
+    # to see if they match up, we sort them first so that puppet doesn't
+    # freak the fuck out
+    def insync?(is)
+      is.sort == should.sort
+    end
   end
 
   newproperty(:ostype) do
@@ -26,12 +30,12 @@ Puppet::Type.newtype(:virtual_machine) do
 
   newproperty(:register) do
   	desc "Weather or not to register the new Vm with VirtualBox (Optional)"
-    # TODO: Make this default to true
-    newvalue(:true)
-    newvalue(:false)
+    defaultto :true
+    newvalues(:true, :false)
   end
 
   newproperty(:basefolder) do
+    # TODO: Add path validation
   	desc "Location for the VM (Optional)"
   end
 
