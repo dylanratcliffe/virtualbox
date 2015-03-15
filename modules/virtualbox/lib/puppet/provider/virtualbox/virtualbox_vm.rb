@@ -18,14 +18,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
       ## Create the command variables
       # This always exists
       name_flag = '--name'
-      groups_flag = nil
+      #groups_flag = nil
       ostype_flag = nil
       register_flag = nil
       basefolder_flag = nil
       uuid_flag = nil
 
       ## Set them based on the given params
-      groups_flag = '--groups' if resource[:groups]
+      #groups_flag = '--groups' if resource[:groups]
       ostype_flag = '--ostype' if resource[:ostype]
       register_flag = '--register' if resource[:register]
       basefolder_flag = '--basefolder' if resource[:basefolder]
@@ -35,7 +35,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
         # Execute vboxmanage to create the vm
         output = vboxmanage(['createvm',
           name_flag, resource[:name],
-          groups_flag, resource[:groups],
+          #groups_flag, resource[:groups],
           ostype_flag, resource[:ostype],
           register_flag,
           basefolder_flag, resource[:basefolder],
