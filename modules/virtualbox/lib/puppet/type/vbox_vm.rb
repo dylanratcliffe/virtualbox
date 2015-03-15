@@ -1,4 +1,4 @@
-Puppet::Type.newtype(:vbox_vm) do
+Puppet::Type.newtype(:virtual_machine) do
   @doc = "Create a new VirtualBox VM."
   
   # Calling ensurable means that we can use:
