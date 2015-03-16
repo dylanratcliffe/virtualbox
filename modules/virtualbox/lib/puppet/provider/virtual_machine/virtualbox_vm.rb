@@ -13,12 +13,12 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       # way to test it, maybe I could put in a bunch of debugging??
       begin
       	vboxmanage(['showvminfo', resource[:name]])
+      	exist = true
       rescue Puppet::ExecutionFailure => e
       	# If there is an exception return false
-      	false
+      	exist = false
       end
-      # Otherwise return true
-      true
+      exist
     end
 
     def create
