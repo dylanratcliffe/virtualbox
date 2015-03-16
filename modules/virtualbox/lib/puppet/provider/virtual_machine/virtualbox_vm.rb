@@ -11,10 +11,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       # does not exist and if it does the resulting string or array or 
       # whatever will be cast into a true. Would be good if there was a 
       # way to test it, maybe I could put in a bunch of debugging??
-      debug('The command is about to be executed')
-      output = vboxmanage(['showvminfo', resource[:name]])
-      debug('It finished')
-      debug('output was #{output.inspect}')
+      begin
+      	vboxmanage(['showvminfo', resource[:name]])
+      rescue Puppet::ExecutionFailure => e
+      	# If there is an exception return false
+      	false
+      end
+      # Otherwise return true
+      true
     end
 
     def create
