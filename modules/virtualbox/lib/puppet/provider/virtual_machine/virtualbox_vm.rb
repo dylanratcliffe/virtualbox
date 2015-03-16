@@ -40,7 +40,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       params_array << '--ostype' if resource[:ostype]
       params_array << resource[:ostype]
       params_array << '--register' if resource[:register]
-      params_array << resource[:register]
       params_array << '--basefolder' if resource[:basefolder]
       params_array << resource[:basefolder]
       params_array << '--uuid' if resource[:uuid]
