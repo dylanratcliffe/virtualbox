@@ -42,18 +42,18 @@ Puppet::Type.newtype(:virtual_machine) do
       'Netware' ,'L4' ,'QNX' ,'JRockitVE')
   end
 
-  newproperty(:register) do
+  newparam(:register) do
   	desc "Weather or not to register the new Vm with VirtualBox (Optional)"
     defaultto :true
     newvalues(:true, :false)
   end
 
-  newproperty(:basefolder) do
+  newparam(:basefolder) do
     # TODO: Add path validation
   	desc "Location for the VM (Optional)"
   end
 
-  newproperty(:uuid) do
+  newparam(:uuid) do
   	desc "UUID of the new VM (Optional)"
   end
 end

@@ -151,11 +151,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::P
     end
 
     def ostype=(value)
-      # THIS IS WHAT I AM UP TO:
-      # Resources: 
-      # http://garylarizza.com/blog/2013/11/26/fun-with-providers-part-2/
-      # https://www.virtualbox.org/manual/ch08.html#idp90667008
-      # 
+      vboxmanage('modifyvm', resource[:name], '--ostype', value)
     end
 
     private
