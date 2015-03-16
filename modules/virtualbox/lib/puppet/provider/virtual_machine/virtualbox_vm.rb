@@ -26,10 +26,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       # This always exists
       name_flag = '--name'
       #groups_flag = nil
-      ostype_flag = nil
-      register_flag = nil
-      basefolder_flag = nil
-      uuid_flag = nil
 
       params_array = []
 
@@ -37,13 +33,13 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       params_array << 'createvm'
       params_array << name_flag
       params_array << resource[:name]
-      params_array << '--ostype' if resource[:ostype]
-      params_array << resource[:ostype]
-      params_array << '--register' if resource[:register]
-      params_array << '--basefolder' if resource[:basefolder]
-      params_array << resource[:basefolder]
-      params_array << '--uuid' if resource[:uuid]
-      params_array << resource[:uuid]
+      params_array << '--ostype' if resource[:ostype] != nil
+      params_array << resource[:ostype] if resource[:ostype] != nil
+      params_array << '--register' if resource[:register] != nil
+      params_array << '--basefolder' if resource[:basefolder] != nil
+      params_array << resource[:basefolder] if resource[:basefolder] != nil
+      params_array << '--uuid' if resource[:uuid] != nil
+      params_array << resource[:uuid] if resource[:uuid] != nil
 
       
 
