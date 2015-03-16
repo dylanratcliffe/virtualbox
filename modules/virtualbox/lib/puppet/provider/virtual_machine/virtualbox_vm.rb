@@ -41,7 +41,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       params_array << '--uuid' if resource[:uuid] != nil
       params_array << resource[:uuid] if resource[:uuid] != nil
 
-      
+      debug(params_array)
 
       begin
         # Execute vboxmanage to create the vm
