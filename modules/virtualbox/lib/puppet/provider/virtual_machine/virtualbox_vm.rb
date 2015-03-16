@@ -31,22 +31,26 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       basefolder_flag = nil
       uuid_flag = nil
 
-      ## Set them based on the given params
-      #groups_flag = '--groups' if resource[:groups]
-      ostype_flag = '--ostype' if resource[:ostype]
-      register_flag = '--register' if resource[:register]
-      basefolder_flag = '--basefolder' if resource[:basefolder]
-      uuid_flag = '--uuid' if resource[:uuid]
+      params_array = []
+
+      ## Add params to the array only if they exist
+      params_array << 'createvm'
+      params_array << name_flag
+      params_array << resource[:name]
+      params_array << '--ostype' if resource[:ostype]
+      params_array << resource[:ostype]
+      params_array << '--register' if resource[:register]
+      params_array << resource[:register]
+      params_array << '--basefolder' if resource[:basefolder]
+      params_array << resource[:basefolder]
+      params_array << '--uuid' if resource[:uuid]
+      params_array << resource[:uuid]
+
+      
 
       begin
         # Execute vboxmanage to create the vm
-        output = vboxmanage(['createvm',
-          name_flag, resource[:name],
-          #groups_flag, resource[:groups],
-          ostype_flag, resource[:ostype],
-          register_flag,
-          basefolder_flag, resource[:basefolder],
-          uuid_flag, resource[:uuid]])      
+        output = vboxmanage(params_array)      
       rescue Puppet::ExecutionFailure => e
         Puppet.debug("#vboxmanage had an error -> #{e.inspect}")
         throw e
