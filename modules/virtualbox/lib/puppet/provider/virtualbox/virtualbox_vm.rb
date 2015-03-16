@@ -1,4 +1,4 @@
-Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm, :parent => Puppet::Provider::Virtualbox) do
+Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
   desc "Manage Virtual Box"
     # This line of code will use some cool Puppet black magic straight out of Haiti
     # to create a method named the same as the symbolised key, in our case: vboxmanage()
