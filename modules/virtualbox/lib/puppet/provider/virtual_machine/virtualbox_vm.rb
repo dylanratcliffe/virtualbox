@@ -174,6 +174,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       debug("Command out: #{output}")
       # Split this on the '=' sign
       split_output = []
+      output = output.split("\n")
       debug('About to exec output.each')
       output.each do |line|
       	split_output << line.split('=')
