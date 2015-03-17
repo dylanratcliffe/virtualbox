@@ -54,7 +54,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     def destroy
       # The lack of boolean casting here is based on the same logic as
       # the exists? thing
-      vboxmanage(['unregistervm', resource[:name], '--delete'])
+      begin
+        vboxmanage(['unregistervm', resource[:name], '--delete'])
+      	destroyed = true
+      rescue Puppet::ExecutionFailure => e
+      	# If there is an exception return false
+      	destroyed = false
+      end
+      destroyed
     end
 
     def ostype
