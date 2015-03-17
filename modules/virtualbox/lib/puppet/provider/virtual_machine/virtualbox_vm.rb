@@ -171,7 +171,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     # to see an example run: vboxmanage showvminfo <vm_name> --machinereadable
     def get_vm_info(name)
       output = vboxmanage('showvminfo', name, '--machinereadable')
-
+      debug("Command out: #{output}")
       # Split this on the '=' sign
       split_output = []
       output.each do |line|
