@@ -174,6 +174,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       debug("Command out: #{output}")
       # Split this on the '=' sign
       split_output = []
+      debug('About to exec output.each')
       output.each do |line|
       	split_output << line.split('=')
       end
@@ -182,6 +183,8 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       info_hash = Hash[split_output.map {|key, value| [key, value]}]
 
       # Remove any literal quotes
+      debug('About to exec info_hash.each')
+
       info_hash.each do |key, value|
       	info_hash[key] = value.tr("\"","")
       end
