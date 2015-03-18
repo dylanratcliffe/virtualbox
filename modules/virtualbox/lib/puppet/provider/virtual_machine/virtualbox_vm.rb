@@ -157,10 +157,11 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
 
       # Grab the settings from the VM
       settings = get_vm_info(resource[:name])
+      # Get the friendly name
       friendly_name = settings['ostype']
-      debug("The friendly_name is: #{friendly_name}")
+      # Convert it to the actual name
       ostype = friendly_names[friendly_name]
-      debug("The OStype is: #{ostype}")
+      # Return it
       ostype
     end
 
@@ -177,6 +178,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     end
 
     def state=(value)
+      debug("Setting state to #{value}")
       if value == 'running'
         vboxmanage(['startvm', resource[:name], '--type', 'headless'])
       elsif value == 'poweroff'
