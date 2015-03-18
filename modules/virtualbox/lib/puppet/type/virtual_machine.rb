@@ -88,7 +88,7 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/\d+/)
   end
 
-  newproperty(:apci) do
+  newproperty(:acpi) do
     desc "APCI on or off"
     defaultto 'on'
     newvalues(/on|off/)
