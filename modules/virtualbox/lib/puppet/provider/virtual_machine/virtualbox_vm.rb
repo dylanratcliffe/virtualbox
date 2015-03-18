@@ -179,10 +179,10 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
 
     def state=(value)
       debug("Setting state to #{value}")
-      if value == "running"
+      if value =~ /running/
       	debug('trying to start the vm')
         vboxmanage(['startvm', resource[:name], '--type', 'headless'])
-      elsif value == "poweroff"
+      elsif value =~ /poweroff/
         vboxmanage(['controlvm', resource[:name], 'poweroff'])
       end
     end
