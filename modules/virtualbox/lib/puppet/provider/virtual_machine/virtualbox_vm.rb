@@ -169,14 +169,22 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       vboxmanage('modifyvm', resource[:name], '--ostype', value)
     end
 
+    # This only deals with two states; running and poweroff
+    # I realise that there is more states but I would be surprised
+    # if people wanted to manage them
     def state
-      state = get_setting('state')
-      # There is some weird stuff going on with the way it stores state
-      # this seems to fix it
-      if state =~ /running/
-      	state = 'running'
-      elsif state =~ /poweroff/
-      	state = 'poweroff'
+      running_vms = vboxmanage('list', 'runningvms')
+      state = 'poweroff'
+      if running_vms.kind_of?(Array)
+        running_vms.each do |vm|
+          if vm.include? resource[:name]
+            state = 'running'
+          end
+        end
+      else
+      	if running_vms.include? resource[:name]
+      	  state = 'running'
+      	end
       end
       state
     end
