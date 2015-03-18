@@ -157,7 +157,9 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
 
       # Grab the settings from the VM
       settings = get_vm_info(resource[:name])
-      ostype = friendly_names[settings['osfamily']]
+      osfamily = settings['osfamily']
+      debug("The osfamily is: #{osfamily}")
+      ostype = friendly_names[osfamily]
       debug("The OStype is: #{ostype}")
       ostype
     end
