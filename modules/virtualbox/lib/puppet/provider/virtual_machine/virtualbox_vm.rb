@@ -169,9 +169,9 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     def state
       # Grab the settings from the VM
       settings = get_vm_info(resource[:name])
-      debug("The state is")
-      debug(state.inspect)
-      settings['VMState']
+      state = settings['VMState']
+      debug("The state is #{state}")
+      state
     end
 
     def state=(value)
