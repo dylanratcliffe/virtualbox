@@ -170,7 +170,15 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     end
 
     def state
-      get_setting('state')
+      state = get_setting('state')
+      # There is some weird stuff going on with the way it stores state
+      # this seems to fix it
+      if state =~ /running/
+      	state = 'running'
+      elsif state =~ /poweroff/
+      	state = 'poweroff'
+      end
+      state
     end
 
     def state=(value)
@@ -232,6 +240,8 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     def modifyvm(parameter, value)
       begin
         vboxmanage('modifyvm', resource[:name], "--#{parameter}", value)
+      # If I could find a better exception here would be great,
+      # something atht is a bit more specific
       rescue Puppet::ExecutionFailure => e
       	throw "VM is running, changes will not be made until it is stopped"
       end
