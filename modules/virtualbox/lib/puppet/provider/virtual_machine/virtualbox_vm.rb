@@ -230,7 +230,11 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
 
     # This is just a wrapper for get_vm_info specific to the modifyvm command
     def modifyvm(parameter, value)
-      vboxmanage('modifyvm', resource[:name], "--#{parameter}", value)
+      begin
+        vboxmanage('modifyvm', resource[:name], "--#{parameter}", value)
+      rescue Puppet::ExecutionFailure => e
+      	throw "VM is running, changes will not be made until it is stopped"
+      end
     end
     
     # This gets all the info from the vm and returns it in a hash
