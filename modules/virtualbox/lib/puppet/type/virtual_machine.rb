@@ -22,6 +22,12 @@ Puppet::Type.newtype(:virtual_machine) do
   #  end
   #end
 
+  newproperty(:state) do
+    desc "Weather the VM should be running or stopped"
+    defaultto 'running'
+    newvalues('running', 'stopped')
+  end
+
   newproperty(:ostype) do
   	desc "OS type of the VM (Optional)"
     newvalues('Other' ,'Other_64' ,'Windows31' ,'Windows95' ,'Windows98' ,
@@ -56,4 +62,5 @@ Puppet::Type.newtype(:virtual_machine) do
   newparam(:uuid) do
   	desc "UUID of the new VM (Optional)"
   end
+
 end

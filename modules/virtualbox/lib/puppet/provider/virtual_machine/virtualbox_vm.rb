@@ -165,6 +165,20 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       vboxmanage('modifyvm', resource[:name], '--ostype', value)
     end
 
+    def state
+      # Grab the settings from the VM
+      settings = get_vm_info(resource[:name])
+      settings['VMState']
+    end
+
+    def state=(value)
+      if value == 'running'
+        vboxmanage(['startvm', resource[:name], '--type', 'headless'])
+      elsif value == 'poweroff'
+        vboxmanage(['controlvm', resource[:name], 'poweroff'])
+      end
+    end
+
     private
     
     # This gets all the info from the vm and returns it in a hash
