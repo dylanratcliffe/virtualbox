@@ -23,9 +23,9 @@ Puppet::Type.newtype(:virtual_machine) do
   #end
 
   newproperty(:state) do
-    desc "Weather the VM should be running or stopped"
+    desc "Weather the VM should be running or poweroff"
     defaultto 'running'
-    newvalues('running', 'stopped')
+    newvalues('running', 'poweroff')
   end
 
   newproperty(:ostype) do
@@ -61,6 +61,37 @@ Puppet::Type.newtype(:virtual_machine) do
 
   newparam(:uuid) do
   	desc "UUID of the new VM (Optional)"
+  end
+
+  newproperty(:description) do
+    desc "The description of the VM"
+  end
+
+  # I'm not going to do iconfile because its a param not a property
+  # also who needs that, fuck 'em
+
+  newproperty(:memory) do
+    desc "memorysize in MB"
+    defaultto 128
+    newvalues(/\d+/)
+  end
+
+  newproperty(:pagefusion) do
+    desc "pagefusion on or off"
+    defaultto 'off'
+    newvalues(/on|off/)
+  end
+
+  newproperty(:vram) do
+    desc "vram size in MB"
+    defaultto 8
+    newvalues(/\d+/)
+  end
+
+  newproperty(:apci) do
+    desc "APCI on or off"
+    defaultto 'on'
+    newvalues(/on|off/)
   end
 
 end

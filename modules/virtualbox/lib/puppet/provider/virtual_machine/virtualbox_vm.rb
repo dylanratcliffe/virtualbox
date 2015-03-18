@@ -170,11 +170,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     end
 
     def state
-      # Grab the settings from the VM
-      settings = get_vm_info(resource[:name])
-      state = settings['VMState']
-      debug("The state is #{state}")
-      state
+      get_setting('state')
     end
 
     def state=(value)
@@ -185,7 +181,57 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       end
     end
 
+    def description
+      get_setting('description')
+    end
+
+    def description=(value)
+      modifyvm('description', value)
+    end
+
+    def memory
+      get_setting('memory')
+    end
+
+    def memory=(value)
+      modifyvm('memory', value)
+    end
+
+    def pagefusion
+      get_setting('pagefusion')
+    end
+
+    def pagefusion=(value)
+      modifyvm('pagefusion', value)
+    end
+
+    def vram
+      get_setting('vram')
+    end
+
+    def vram=(value)
+      modifyvm('vram', value)
+    end
+
+    def acpi
+      get_setting('acpi')
+    end
+
+    def acpi=(value)
+      modifyvm('acpi', value)
+    end
+
     private
+
+    def get_setting(setting)
+      settings = get_vm_info(resource[:name])
+      setting = settings[setting]
+    end
+
+    # This is just a wrapper for get_vm_info specific to the modifyvm command
+    def modifyvm(parameter, value)
+      vboxmanage('modifyvm', resource[:name], "--#{parameter}", value)
+    end
     
     # This gets all the info from the vm and returns it in a hash
     # to see an example run: vboxmanage showvminfo <vm_name> --machinereadable
