@@ -277,14 +277,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('largepages', value)
     end
 
-    def vtxux
-      get_setting('vtxux')
-    end
-
-    def vtxux=(value)
-      modifyvm('vtxux', value)
-    end
-
     def pae
       get_setting('pae')
     end

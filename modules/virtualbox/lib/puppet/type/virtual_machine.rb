@@ -109,11 +109,6 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
-  newproperty(:vtxux) do
-    desc "Turn vtxux on or off"
-    newvalues(/on|off/)
-  end
-
   newproperty(:pae) do
     desc "Turn pae on or off"
     newvalues(/on|off/)
