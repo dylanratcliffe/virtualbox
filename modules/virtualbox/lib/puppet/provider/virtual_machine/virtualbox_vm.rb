@@ -277,14 +277,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('largepages', value)
     end
 
-    def pae
-      get_setting('pae')
-    end
-
-    def pae=(value)
-      modifyvm('pae', value)
-    end
-
     def longmode
       get_setting('longmode')
     end
