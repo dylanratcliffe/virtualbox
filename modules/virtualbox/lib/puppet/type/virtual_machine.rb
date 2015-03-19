@@ -109,6 +109,55 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
+  newproperty(:vtxvpid) do
+    desc "Turn vtxvpid on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:vtxux) do
+    desc "Turn vtxux on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:pae) do
+    desc "Turn pae on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:longmode) do
+    desc "Turn longmode on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:synthcpu) do
+    desc "Turn synthcpu on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:hardwareuuid) do
+    desc "set the hardware UUID"
+  end
+
+  newproperty(:cpus) do
+    desc "Turn cpus on or off"
+    newvalues(/\d+/)
+  end
+
+  newproperty(:cpuexecutioncap) do
+    desc "Set the cpuexecutioncap"
+    newvalues(/\d+/)
+  end
+
+  newproperty(:rtcuseutc) do
+    desc "Turn rtcuseutc on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:longmode) do
+    desc "Turn longmode on or off"
+    newvalues(/on|off/)
+  end
+
 
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
