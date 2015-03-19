@@ -237,6 +237,55 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('acpi', value)
     end
 
+    def ioapic
+      get_setting('ioapic')
+    end
+
+    def ioapic=(value)
+      modifyvm('ioapic', value)
+    end
+
+    def hpet
+      get_setting('hpet')
+    end
+
+    def hpet=(value)
+      modifyvm('hpet', value)
+    end
+
+    def triplefaultreset
+      get_setting('triplefaultreset')
+    end
+
+    def triplefaultreset=(value)
+      modifyvm('triplefaultreset', value)
+    end
+
+    def hwvirtex
+      get_setting('hwvirtex')
+    end
+
+    def hwvirtex=(value)
+      modifyvm('hwvirtex', value)
+    end
+
+    def nestedpaging
+      get_setting('nestedpaging')
+    end
+
+    def nestedpaging=(value)
+      modifyvm('nestedpaging', value)
+    end
+
+    def largepages
+      get_setting('largepages')
+    end
+
+    def largepages=(value)
+      modifyvm('largepages', value)
+    end
+
+
     private
 
     def get_setting(setting)
