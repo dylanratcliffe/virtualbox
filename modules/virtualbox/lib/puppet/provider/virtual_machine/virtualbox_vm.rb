@@ -253,14 +253,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('hpet', value)
     end
 
-    def triplefaultreset
-      get_setting('triplefaultreset')
-    end
-
-    def triplefaultreset=(value)
-      modifyvm('triplefaultreset', value)
-    end
-
     def hwvirtex
       get_setting('hwvirtex')
     end

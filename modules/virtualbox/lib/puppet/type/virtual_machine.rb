@@ -94,11 +94,6 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
-  newproperty(:triplefaultreset) do
-    desc "I don't even know what this does, but it can be on or off"
-    newvalues(/on|off/)
-  end
-
   newproperty(:hwvirtex) do
     desc "I don't even know what this does, but it can be on or off"
     newvalues(/on|off/)
