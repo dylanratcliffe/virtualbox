@@ -69,6 +69,11 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/\d+/)
   end
 
+  newproperty(:vtxvpid) do
+    desc "Turn vtxvpid on or off"
+    newvalues(/on|off/)
+  end
+
   newproperty(:pagefusion) do
     desc "pagefusion on or off"
     newvalues(/on|off/)
@@ -106,11 +111,6 @@ Puppet::Type.newtype(:virtual_machine) do
 
   newproperty(:largepages) do
     desc "Turn large pages on or off"
-    newvalues(/on|off/)
-  end
-
-  newproperty(:vtxvpid) do
-    desc "Turn vtxvpid on or off"
     newvalues(/on|off/)
   end
 
