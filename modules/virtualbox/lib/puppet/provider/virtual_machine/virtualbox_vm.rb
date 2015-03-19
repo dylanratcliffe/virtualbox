@@ -277,13 +277,13 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('largepages', value)
     end
 
-    def vtxvpid
-      get_setting('vtxvpid')
-    end
+    #def vtxvpid
+    #  get_setting('vtxvpid')
+    #end
 
-    def vtxvpid=(value)
-      modifyvm('vtxvpid', value)
-    end
+    #def vtxvpid=(value)
+    #  modifyvm('vtxvpid', value)
+    #end
 
     def vtxux
       get_setting('vtxux')
