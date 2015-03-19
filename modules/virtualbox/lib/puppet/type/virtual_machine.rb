@@ -84,6 +84,38 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
+  newproperty(:ioapic) do
+    desc "I don't even know what this does, but it can be on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:hpet) do 
+    desc "I don't even know what this does, but it can be on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:triplefaultreset) do
+    desc "I don't even know what this does, but it can be on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:hwvirtex) do
+    desc "I don't even know what this does, but it can be on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:nestedpaging) do
+    desc "Turn nested paging on or off"
+    newvalues(/on|off/)
+  end
+
+  newproperty(:largepages) do
+    desc "Turn large pages on or off"
+    newvalues(/on|off/)
+  end
+
+
+  # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
     desc "Weather the VM should be running or poweroff"
     defaultto 'running'
