@@ -22,12 +22,6 @@ Puppet::Type.newtype(:virtual_machine) do
   #  end
   #end
 
-  newproperty(:state) do
-    desc "Weather the VM should be running or poweroff"
-    defaultto 'running'
-    newvalues('running', 'poweroff')
-  end
-
   newproperty(:ostype) do
   	desc "OS type of the VM (Optional)"
     newvalues('Other' ,'Other_64' ,'Windows31' ,'Windows95' ,'Windows98' ,
@@ -72,26 +66,28 @@ Puppet::Type.newtype(:virtual_machine) do
 
   newproperty(:memory) do
     desc "memorysize in MB"
-    defaultto 128
     newvalues(/\d+/)
   end
 
   newproperty(:pagefusion) do
     desc "pagefusion on or off"
-    defaultto 'off'
     newvalues(/on|off/)
   end
 
   newproperty(:vram) do
     desc "vram size in MB"
-    defaultto 8
     newvalues(/\d+/)
   end
 
   newproperty(:acpi) do
     desc "APCI on or off"
-    defaultto 'on'
     newvalues(/on|off/)
+  end
+
+  newproperty(:state) do
+    desc "Weather the VM should be running or poweroff"
+    defaultto 'running'
+    newvalues('running', 'poweroff')
   end
 
 end

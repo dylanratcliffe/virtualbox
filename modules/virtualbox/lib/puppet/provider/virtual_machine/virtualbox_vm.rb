@@ -254,6 +254,13 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       	throw "VM is running, changes will not be made until it is stopped"
       end
     end
+
+    #
+    #
+    # the next step it so stop it from starting the machine before doing the
+    # properties
+    #
+
     
     # This gets all the info from the vm and returns it in a hash
     # to see an example run: vboxmanage showvminfo <vm_name> --machinereadable
