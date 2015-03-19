@@ -153,11 +153,6 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
-  newproperty(:longmode) do
-    desc "Turn longmode on or off"
-    newvalues(/on|off/)
-  end
-
 
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do

@@ -277,6 +277,78 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('largepages', value)
     end
 
+    def vtxvpid
+      get_setting('vtxvpid')
+    end
+
+    def vtxvpid=(value)
+      modifyvm('vtxvpid', value)
+    end
+
+    def vtxux
+      get_setting('vtxux')
+    end
+
+    def vtxux=(value)
+      modifyvm('vtxux', value)
+    end
+
+    def pae
+      get_setting('pae')
+    end
+
+    def pae=(value)
+      modifyvm('pae', value)
+    end
+
+    def longmode
+      get_setting('longmode')
+    end
+
+    def longmode=(value)
+      modifyvm('longmode', value)
+    end
+
+    def synthcpu
+      get_setting('synthcpu')
+    end
+
+    def synthcpu=(value)
+      modifyvm('synthcpu', value)
+    end
+
+    def hardwareuuid
+      get_setting('hardwareuuid')
+    end
+
+    def hardwareuuid=(value)
+      modifyvm('hardwareuuid', value)
+    end
+
+    def cpus
+      get_setting('cpus')
+    end
+
+    def cpus=(value)
+      modifyvm('cpus', value)
+    end
+
+    def cpuexecutioncap
+      get_setting('cpuexecutioncap')
+    end
+
+    def cpuexecutioncap=(value)
+      modifyvm('cpuexecutioncap', value)
+    end
+
+    def rtcuseutc
+      get_setting('rtcuseutc')
+    end
+
+    def rtcuseutc=(value)
+      modifyvm('rtcuseutc', value)
+    end
+
 
     private
 
