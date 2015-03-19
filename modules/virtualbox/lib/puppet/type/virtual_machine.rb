@@ -109,10 +109,10 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
-  #newproperty(:vtxvpid) do
-  #  desc "Turn vtxvpid on or off"
-  #  newvalues(/on|off/)
-  #end
+  newproperty(:vtxvpid) do
+    desc "Turn vtxvpid on or off"
+    newvalues(/on|off/)
+  end
 
   newproperty(:vtxux) do
     desc "Turn vtxux on or off"
