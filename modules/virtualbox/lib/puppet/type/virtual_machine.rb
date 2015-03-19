@@ -85,17 +85,17 @@ Puppet::Type.newtype(:virtual_machine) do
   end
 
   newproperty(:ioapic) do
-    desc "I don't even know what this does, but it can be on or off"
+    desc "ioapic"
     newvalues(/on|off/)
   end
 
   newproperty(:hpet) do 
-    desc "I don't even know what this does, but it can be on or off"
+    desc "hpet"
     newvalues(/on|off/)
   end
 
   newproperty(:hwvirtex) do
-    desc "I don't even know what this does, but it can be on or off"
+    desc "hwvirtex"
     newvalues(/on|off/)
   end
 
