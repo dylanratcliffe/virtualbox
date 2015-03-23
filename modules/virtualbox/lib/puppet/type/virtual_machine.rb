@@ -123,6 +123,11 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/\d+/)
   end
 
+  newproperty(:accelerate3d) do
+    desc "To accelerate3d, or not to accelerate3d, that is the question."
+    newvalues(/on|off/)
+  end
+
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
     desc "Weather the VM should be running or poweroff"

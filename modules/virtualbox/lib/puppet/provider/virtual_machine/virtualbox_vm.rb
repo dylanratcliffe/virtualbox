@@ -301,6 +301,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('monitorcount', value)
     end
 
+    def accelerate3d
+      get_setting('accelerate3d')
+    end
+
+    def accelerate3d=(value)
+      modifyvm('accelerate3d', value)
+    end
+
 
     private
 
