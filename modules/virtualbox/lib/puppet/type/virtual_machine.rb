@@ -118,11 +118,6 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/\d+/)
   end
 
-  newproperty(:graphicscontroller) do
-    desc "The graphics controller; none or vboxvga"
-    newvalues(/none|vboxvga/)
-  end
-
   newproperty(:monitorcount) do
     desc "The number of monitors"
     newvalues(/\d+/)

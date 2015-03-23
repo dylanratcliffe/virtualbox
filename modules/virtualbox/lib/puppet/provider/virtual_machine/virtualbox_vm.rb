@@ -293,14 +293,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('cpuexecutioncap', value)
     end
 
-    def graphicscontroller
-      get_setting('graphicscontroller')
-    end
-
-    def graphicscontroller=(value)
-      modifyvm('graphicscontroller', value)
-    end
-
     def monitorcount
       get_setting('monitorcount')
     end
