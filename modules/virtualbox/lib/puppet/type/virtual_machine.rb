@@ -129,8 +129,28 @@ Puppet::Type.newtype(:virtual_machine) do
   end
 
   newproperty(:firmware) do
-    desc "What firmware to use: bios|efi|efi32|efi64"
+    desc "What device"
     newvalues(/BIOS|EFI|EFI32|EFI64/)
+  end
+
+  newproperty(:boot1) do
+    desc "What boot1 device to use: none|floppy|dvd|disk|net"
+    newvalues(/none|floppy|dvd|disk|net/)
+  end
+
+  newproperty(:boot2) do
+    desc "What boot2 device to use: none|floppy|dvd|disk|net"
+    newvalues(/none|floppy|dvd|disk|net/)
+  end
+
+  newproperty(:boot3) do
+    desc "What boot3 device to use: none|floppy|dvd|disk|net"
+    newvalues(/none|floppy|dvd|disk|net/)
+  end
+
+  newproperty(:boot4) do
+    desc "What boot4 device to use: none|floppy|dvd|disk|net"
+    newvalues(/none|floppy|dvd|disk|net/)
   end
 
   # THIS NEEDS TO BE AT THE END

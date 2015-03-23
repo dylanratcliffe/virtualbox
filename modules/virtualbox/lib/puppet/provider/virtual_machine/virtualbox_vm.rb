@@ -317,6 +317,38 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('firmware', value)
     end
 
+    def boot1
+      get_setting('boot1')
+    end
+
+    def boot1=(value)
+      modifyvm('boot1', value)
+    end
+
+    def boot2
+      get_setting('boot2')
+    end
+
+    def boot2=(value)
+      modifyvm('boot2', value)
+    end
+
+    def boot3
+      get_setting('boot3')
+    end
+
+    def boot3=(value)
+      modifyvm('boot3', value)
+    end
+
+    def boot4
+      get_setting('boot4')
+    end
+
+    def boot4=(value)
+      modifyvm('boot4', value)
+    end
+
 
     private
 
