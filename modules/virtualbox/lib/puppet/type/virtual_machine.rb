@@ -130,7 +130,7 @@ Puppet::Type.newtype(:virtual_machine) do
 
   newproperty(:firmware) do
     desc "What firmware to use: bios|efi|efi32|efi64"
-    newvalues(/bios|efi|efi32|efi64/)
+    newvalues(/BIOS|EFI|EFI32|EFI64/)
   end
 
   # THIS NEEDS TO BE AT THE END
