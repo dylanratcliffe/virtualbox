@@ -349,6 +349,25 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('boot4', value)
     end
 
+    def nics
+      nics = {}
+      settings = get_vm_info(resource[:name])
+      setting.each do |setting_name|
+        if setting_name =~ /nic\d+/
+          nics << { seting_name => settings[setting_name] }
+        end
+      end
+      nics
+    end
+
+    def nics=(value)
+      if value.count > 0
+        value.each do |nic_name, type|
+          modifyvm(nic_name, type)
+        end
+      end
+    end
+
 
     private
 

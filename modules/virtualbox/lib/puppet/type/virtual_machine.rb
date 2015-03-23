@@ -153,6 +153,11 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/none|floppy|dvd|disk|net/)
   end
 
+  newproperty(:nics) do
+    # TODO: Document this better
+    desc "The NICs to use"
+  end
+
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
     desc "Weather the VM should be running or poweroff"
