@@ -356,7 +356,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       settings.each do |key, value|
       	debug("Looking at setting :#{key}")
         if key =~ /nic\d+/
-          nics << { key => settings[key] }
+          nics[key] = settings[key]
         end
       end
       nics
