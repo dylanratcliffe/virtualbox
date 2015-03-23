@@ -237,30 +237,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('acpi', value)
     end
 
-    def ioapic
-      get_setting('ioapic')
-    end
-
-    def ioapic=(value)
-      modifyvm('ioapic', value)
-    end
-
-    def hpet
-      get_setting('hpet')
-    end
-
-    def hpet=(value)
-      modifyvm('hpet', value)
-    end
-
-    def hwvirtex
-      get_setting('hwvirtex')
-    end
-
-    def hwvirtex=(value)
-      modifyvm('hwvirtex', value)
-    end
-
     def nestedpaging
       get_setting('nestedpaging')
     end
@@ -317,12 +293,20 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('cpuexecutioncap', value)
     end
 
-    def rtcuseutc
-      get_setting('rtcuseutc')
+    def graphicscontroller
+      get_setting('graphicscontroller')
     end
 
-    def rtcuseutc=(value)
-      modifyvm('rtcuseutc', value)
+    def graphicscontroller=(value)
+      modifyvm('graphicscontroller', value)
+    end
+
+    def monitorcount
+      get_setting('monitorcount')
+    end
+
+    def monitorcount=(value)
+      modifyvm('monitorcount', value)
     end
 
 
