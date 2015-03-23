@@ -309,6 +309,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('accelerate3d', value)
     end
 
+    def firmware
+      get_setting('firmware')
+    end
+
+    def firmware=(value)
+      modifyvm('firmware', value)
+    end
+
 
     private
 

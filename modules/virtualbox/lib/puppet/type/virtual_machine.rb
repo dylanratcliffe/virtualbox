@@ -128,6 +128,11 @@ Puppet::Type.newtype(:virtual_machine) do
     newvalues(/on|off/)
   end
 
+  newproperty(:firmware) do
+    desc "What firmware to use: bios|efi|efi32|efi64"
+    newvalues(/bios|efi|efi32|efi64/)
+  end
+
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
     desc "Weather the VM should be running or poweroff"
