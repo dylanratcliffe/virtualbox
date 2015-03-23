@@ -353,10 +353,10 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       nics = {}
       settings = get_vm_info(resource[:name])
       debug(settings)
-      settings.each do |name, value|
-      	debug("Looking at setting :#{name}")
-        if name =~ /nic\d+/
-          nics << { seting_name => settings[name] }
+      settings.each do |key, value|
+      	debug("Looking at setting :#{key}")
+        if key =~ /nic\d+/
+          nics << { key => settings[key] }
         end
       end
       nics
