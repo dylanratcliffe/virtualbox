@@ -80,22 +80,7 @@ Puppet::Type.newtype(:virtual_machine) do
   end
 
   newproperty(:acpi) do
-    desc "APCI on or off"
-    newvalues(/on|off/)
-  end
-
-  newproperty(:ioapic) do
-    desc "ioapic"
-    newvalues(/on|off/)
-  end
-
-  newproperty(:hpet) do 
-    desc "hpet"
-    newvalues(/on|off/)
-  end
-
-  newproperty(:hwvirtex) do
-    desc "hwvirtex"
+    desc "ACPI on or off"
     newvalues(/on|off/)
   end
 
@@ -132,12 +117,6 @@ Puppet::Type.newtype(:virtual_machine) do
     desc "Set the cpuexecutioncap"
     newvalues(/\d+/)
   end
-
-  newproperty(:rtcuseutc) do
-    desc "Turn rtcuseutc on or off"
-    newvalues(/on|off/)
-  end
-
 
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
