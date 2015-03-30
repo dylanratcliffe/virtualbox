@@ -164,7 +164,7 @@ Puppet::Type.newtype(:virtual_machine) do
     end
   end
 
-  newproperty(:ioapic) do
+  newproperty(:io_apic) do
     desc "This is required for more than 1 CPU"
     newvalues(/on|off/)
     defaultto 'on'
