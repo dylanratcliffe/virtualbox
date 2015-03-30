@@ -369,7 +369,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
         if setting =~ /nic\d/ && value !~ /none/
           debug("Found an active NIC, grabbing settings")
           # Get the number from the setting name
-          nic_number = /.*(\d)=/.match(setting)[1]
+          nic_number = /\d/.match(setting)
           # Get the test of the settings for this NIC
           mode = settings["nic#{nic_number}"]
           type = settings["nictype#{nic_number}"]
