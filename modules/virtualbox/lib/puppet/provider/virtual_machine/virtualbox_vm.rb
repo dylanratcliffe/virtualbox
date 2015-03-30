@@ -350,16 +350,48 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     end
 
     def nics
+      #
+      # Im at the point now where NICs need a type and a speed when they are created
+      # as per this correct config
+      #
+      # nic1="nat"
+      # nictype1="Am79C973"
+      # nicspeed1="0"
+      # nic2="bridged"
+      # nictype2="Am79C973"
+      # nicspeed2="0"
+      #
       nics = {}
       settings = get_vm_info(resource[:name])
       debug(settings)
-      settings.each do |key, value|
-      	debug("Looking at setting :#{key}")
-        if key =~ /nic\d+/ && value !~ /none/
-          nics[key] = settings[key]
+      settings.each do |setting, value|
+      	# Each time there is a unique NIC do this
+        if setting =~ /nic\d/ && value !~ /none/
+          # Get the number from the setting name
+          nic_number = /.*(\d)=/.match(setting)[1]
+          # Get the test of the settings for this NIC
+          mode = settings["nic#{nic_number}"]
+          type = settings["nictype#{nic_number}"]
+          speed = settings["nicspeed#{nic_number}"]
+          # Add it to the hash
+          nics[nic_number] = {
+          	'mode'  => mode,
+          	'type'  => type,
+          	'speed' => speed
+          }
         end
       end
       nics
+      #nics = {}
+      #settings = get_vm_info(resource[:name])
+      #debug(settings)
+      #settings.each do |key, value|
+      #	debug("Looking at setting :#{key}")
+      #  if key =~ /nic\d+/ && value !~ /none/
+      #    nics[key] = settings[key]
+      #  end
+      #end
+      #nics
     end
 
     def nics=(value)
