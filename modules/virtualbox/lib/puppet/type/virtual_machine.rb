@@ -58,6 +58,7 @@ Puppet::Type.newtype(:virtual_machine) do
   end
 
   newproperty(:description) do
+    defaultto "Managed by Puppet, do not modify settings using the VirtualBox GUI"
     desc "The description of the VM"
   end
 
