@@ -156,6 +156,12 @@ Puppet::Type.newtype(:virtual_machine) do
   newproperty(:nics) do
     # TODO: Document this better
     desc "The NICs to use"
+    # This little gem makes sure that when we are comparing the arrays
+    # to see if they match up, we sort them first so that puppet doesn't
+    # freak the fuck out
+    def insync?(is)
+      is.sort == should.sort
+    end
   end
 
   # THIS NEEDS TO BE AT THE END
