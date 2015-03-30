@@ -406,6 +406,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
           modifyvm("nictype#{nic_number}", settings['type'])
           debug("Setting NIC speed for NIC Number #{nic_number}")
           modifyvm("nicspeed#{nic_number}", settings['speed'])
+          # Extra setting for bridged adapter that has to be set
+          # in future versions this will be manageable in the config
+          if settings['mode'] =~ /bridged/ 
+          	vm_settings = get_vm_info(resource[:name])
+          	if vm_settings["bridgeadapter#{nic_number}"] == ''
+          	  modifyvm("bridgeadapter#{nic_number}", 'enp5s0')
+          	end
+          end
         end
       end
       #if value.count > 0
