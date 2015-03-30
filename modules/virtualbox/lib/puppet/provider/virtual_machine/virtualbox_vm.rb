@@ -423,6 +423,14 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       #end
     end
 
+    def ioapic
+      get_setting('ioapic')
+    end
+
+    def ioapic=(value)
+      modifyvm('ioapic', value)
+    end
+
 
     private
 

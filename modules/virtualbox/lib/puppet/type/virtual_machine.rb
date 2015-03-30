@@ -164,6 +164,12 @@ Puppet::Type.newtype(:virtual_machine) do
     end
   end
 
+  newproperty(:ioapic) do
+    desc "This is required for more than 1 CPU"
+    newvalues(/on|off/)
+    defaultto 'on'
+  end
+
   # THIS NEEDS TO BE AT THE END
   newproperty(:state) do
     desc "Weather the VM should be running or poweroff"
