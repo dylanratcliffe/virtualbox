@@ -367,6 +367,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       settings.each do |setting, value|
       	# Each time there is a unique NIC do this
         if setting =~ /nic\d/ && value !~ /none/
+          debug("Found an active NIC, grabbing settings")
           # Get the number from the setting name
           nic_number = /.*(\d)=/.match(setting)[1]
           # Get the test of the settings for this NIC
@@ -381,6 +382,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
           }
         end
       end
+      debug("Returning settings: #{nics}")
       nics
       #nics = {}
       #settings = get_vm_info(resource[:name])
@@ -396,10 +398,21 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
 
     def nics=(value)
       if value.count > 0
-        value.each do |nic_name, type|
-          modifyvm(nic_name, type)
+      	debug("Trying to set NICS")
+        value.each do |nic_number, settings|
+          debug("Setting NIC mode for NIC Number #{nic_number}")
+          modifyvm("nic#{nic_number}", settings['mode'])
+          debug("Setting NIC type for NIC Number #{nic_number}")
+          modifyvm("nictype#{nic_number}", settings['type'])
+          debug("Setting NIC speed for NIC Number #{nic_number}")
+          modifyvm("nicspeed#{nic_number}", settings['speed'])
         end
       end
+      #if value.count > 0
+      #  value.each do |nic_name, type|
+      #    modifyvm(nic_name, type)
+      #  end
+      #end
     end
 
 
