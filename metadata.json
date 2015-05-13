@@ -1,0 +1,12 @@
+{
+  "name": "virtualbox-new",
+  "version": "0.1.0",
+  "author": "Dylan Ratcliffe",
+  "summary": "A moudle to manage VirtualBox VMs",
+  "license": "Apache 2.0",
+  "source": "TBA",
+  "project_page": "TBA",
+  "issues_url": "TBA",
+  "dependencies": [ ]
+}
+
