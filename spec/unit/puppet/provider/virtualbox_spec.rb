@@ -26,7 +26,7 @@ describe provider_class do
 
   context "When modifying" do
     it 'should be able to set the ostype' do
-      value = 'DOS'
+      value = 'Windows8_64'
       expect(provider.ostype=value).to eq(value)
       expect(provider.ostype).to eq(value)
     end
@@ -38,9 +38,9 @@ describe provider_class do
     end
 
     it 'should be able to manage the description' do
-      expect(provider.description).to match(/something/)
-      expect(provider.description='test').to be_nil
-      expect(provider.description).to match(/test/)
+      expect(provider.description).to be_nil
+      expect(provider.description='test').to eq('test')
+      expect(provider.description).to eq('test')
     end
 
     it 'should be able to manage the memory' do
@@ -48,6 +48,28 @@ describe provider_class do
       expect(provider.memory='1024').to eq("1024")
       expect(provider.memory).to eq("1024")
     end
+
+    it 'should be able to manage pagefusion' do
+      expect(provider.pagefusion).to eq("off")
+      # TODO: Pagefusion does not work on mac, need to work out how to make testes
+      # robust enough to deal with this
+      #expect(provider.pagefusion='on').to eq("on")
+    end
+
+    it 'should be able to manage the vram' do
+      expect(provider.vram).to eq("8")
+      expect(provider.vram='128').to eq("128")
+      expect(provider.vram).to eq("128")
+    end
+
+    it 'should be able to manage acpi' do
+      expect(provider.acpi).to eq("on")
+      expect(provider.acpi='off').to eq("off")
+      expect(provider.acpi).to eq("off")
+    end
+
+
+
 
   end
 
