@@ -155,7 +155,6 @@ Puppet::Type.newtype(:virtual_machine) do
   end
 
   newproperty(:nics) do
-    # TODO: Document this better
     desc "The NICs to use"
     # Override the default .insync? method
     def insync?(is)
