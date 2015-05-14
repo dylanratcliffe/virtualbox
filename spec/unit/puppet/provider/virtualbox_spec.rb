@@ -198,7 +198,7 @@ describe provider_class do
 
     it 'should be able to manage LOTS of nics' do
       nics_hash = {}
-      (1...100).each do |number|
+      (1...10).each do |number|
         nics_hash[number] = {
           'mode' => 'nat',
           'type' => 'Am79C973',
@@ -208,6 +208,11 @@ describe provider_class do
       expect(provider.nics=nics_hash).to eq(nics_hash)
     end
 
+    it 'should be able to manage io_apic' do
+      expect(provider.io_apic).to eq("off")
+      expect(provider.io_apic='on').to eq("on")
+      expect(provider.io_apic).to eq("on")
+    end
   end
 
   context "When deleting" do

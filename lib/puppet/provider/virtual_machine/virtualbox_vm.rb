@@ -431,10 +431,12 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
     end
 
     def io_apic
+      debug('READING io_apic VALUE')
       get_setting('ioapic')
     end
 
     def io_apic=(value)
+      debug('WRITING io_apic VALUE')
       modifyvm('ioapic', value)
     end
 
