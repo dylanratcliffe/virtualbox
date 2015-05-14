@@ -110,7 +110,7 @@ Puppet::Type.newtype(:virtual_machine) do
   end
 
   newproperty(:cpus) do
-    desc "Turn cpus on or off"
+    desc "Manage the number of CPUs"
     newvalues(/\d+/)
   end
 
