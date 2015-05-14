@@ -446,7 +446,12 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       # If I could find a better exception here would be great,
       # something that is a bit more specific
       rescue Puppet::ExecutionFailure => e
-      	throw "VM is running, changes will not be made until it is stopped"
+        #throw e.message.to_s
+        if e.message.to_s =~ /already locked for a session/
+          throw "VM is running, changes will not be made until it is stopped"
+        else 
+          throw e
+        end
       end
     end
     
