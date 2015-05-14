@@ -38,9 +38,15 @@ describe provider_class do
     end
 
     it 'should be able to manage the description' do
-      expect(provider.description).to eq('something')
+      expect(provider.description).to match(/something/)
       expect(provider.description='test').to be_nil
       expect(provider.description).to match(/test/)
+    end
+
+    it 'should be able to manage the memory' do
+      expect(provider.memory).to eq("128")
+      expect(provider.memory='1024').to eq("1024")
+      expect(provider.memory).to eq("1024")
     end
 
   end

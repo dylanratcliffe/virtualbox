@@ -444,7 +444,7 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       begin
         vboxmanage('modifyvm', resource[:name], "--#{parameter}", value)
       # If I could find a better exception here would be great,
-      # something atht is a bit more specific
+      # something that is a bit more specific
       rescue Puppet::ExecutionFailure => e
       	throw "VM is running, changes will not be made until it is stopped"
       end
