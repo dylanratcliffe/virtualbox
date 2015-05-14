@@ -400,12 +400,19 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       if value.count > 0
       	debug("Trying to set NICS")
         value.each do |nic_number, settings|
-          debug("Setting NIC mode for NIC Number #{nic_number}")
-          modifyvm("nic#{nic_number}", settings['mode'])
-          debug("Setting NIC type for NIC Number #{nic_number}")
-          modifyvm("nictype#{nic_number}", settings['type'])
-          debug("Setting NIC speed for NIC Number #{nic_number}")
-          modifyvm("nicspeed#{nic_number}", settings['speed'])
+          # These if statements allow us to manage only one of the properties without causing errors
+          if settings['mode']
+            debug("Setting NIC mode for NIC Number #{nic_number}")
+            modifyvm("nic#{nic_number}", settings['mode'])
+          end
+          if settings['type']
+            debug("Setting NIC type for NIC Number #{nic_number}")
+            modifyvm("nictype#{nic_number}", settings['type'])
+          end
+          if settings['speed']
+            debug("Setting NIC speed for NIC Number #{nic_number}")
+            modifyvm("nicspeed#{nic_number}", settings['speed'])
+          end
           # Extra setting for bridged adapter that has to be set
           # in future versions this will be manageable in the config
           if settings['mode'] =~ /bridged/ 
