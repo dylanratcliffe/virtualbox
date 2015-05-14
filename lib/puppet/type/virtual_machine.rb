@@ -157,11 +157,23 @@ Puppet::Type.newtype(:virtual_machine) do
   newproperty(:nics) do
     # TODO: Document this better
     desc "The NICs to use"
-    # This little gem makes sure that when we are comparing the arrays
-    # to see if they match up, we sort them first so that puppet doesn't
-    # freak the fuck out
+    # Override the default .insync? method
     def insync?(is)
-      is.sort == should.sort
+      # Loop through each nic
+      should.each do | nic_number, settings |
+        # loop through each one of its settings
+        settings.each do | name, value |
+          debug("Checking that this:")
+          debug(should[nic_number])
+          debug(should[nic_number][name])
+          debug("Equals:")
+          debug(is[nic_number])
+          debug(is[nic_number][name])
+          if should[nic_number][name] != is[nic_number][name]
+            return false
+          end
+        end
+      end
     end
   end
 
