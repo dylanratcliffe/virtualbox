@@ -163,12 +163,6 @@ Puppet::Type.newtype(:virtual_machine) do
       should.each do | nic_number, settings |
         # loop through each one of its settings
         settings.each do | name, value |
-          debug("Checking that this:")
-          debug(should[nic_number])
-          debug(should[nic_number][name])
-          debug("Equals:")
-          debug(is[nic_number])
-          debug(is[nic_number][name])
           if should[nic_number][name] != is[nic_number][name]
             return false
           end
