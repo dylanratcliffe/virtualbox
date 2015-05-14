@@ -68,7 +68,29 @@ describe provider_class do
       expect(provider.acpi).to eq("off")
     end
 
+    it 'should be able to manage nestedpaging' do
+      expect(provider.nestedpaging).to eq("on")
+      expect(provider.nestedpaging='off').to eq("off")
+      expect(provider.nestedpaging).to eq("off")
+    end
 
+    it 'should be able to manage largepages' do
+      expect(provider.largepages).to eq("on")
+      expect(provider.largepages='off').to eq("off")
+      expect(provider.largepages).to eq("off")
+    end
+
+    it 'should be able to manage longmode' do
+      expect(provider.longmode).to eq("off")
+      expect(provider.longmode='on').to eq("on")
+      expect(provider.longmode).to eq("on")
+    end
+
+    it 'should be able to manage synthcpu' do
+      expect(provider.synthcpu).to eq("off")
+      expect(provider.synthcpu='on').to eq("on")
+      expect(provider.synthcpu).to eq("on")
+    end
 
 
   end
