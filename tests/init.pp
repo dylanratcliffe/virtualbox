@@ -54,8 +54,6 @@ virtual_machine { 'computer_1':
       },
       2 => {
         mode  => 'bridged',
-        type  => 'Am79C973',
-        speed => 0
       }
     }
   }
