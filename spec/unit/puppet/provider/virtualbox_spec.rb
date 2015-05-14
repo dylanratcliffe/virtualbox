@@ -196,6 +196,18 @@ describe provider_class do
       expect(provider.nics=nic_value).to eq(nic_value)
     end
 
+    it 'should be able to manage LOTS of nics' do
+      nics_hash = {}
+      (1...100).each do |number|
+        nics_hash[number] = {
+          'mode' => 'nat',
+          'type' => 'Am79C973',
+          'speed' => 1000
+        }
+      end
+      expect(provider.nics=nics_hash).to eq(nics_hash)
+    end
+
   end
 
   context "When deleting" do
