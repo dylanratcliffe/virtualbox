@@ -92,6 +92,109 @@ describe provider_class do
       expect(provider.synthcpu).to eq("on")
     end
 
+    it 'should be able to manage hardwareuuid' do
+      expect(provider.hardwareuuid='de305d54-75b4-431b-adb2-eb6b9e546014').to eq("de305d54-75b4-431b-adb2-eb6b9e546014")
+      expect(provider.hardwareuuid).to eq("de305d54-75b4-431b-adb2-eb6b9e546014")
+    end
+
+    it 'should be able to manage cpus' do
+      expect(provider.cpus).to eq("1")
+      expect(provider.cpus='2').to eq("2")
+      expect(provider.cpus).to eq("2")
+    end
+
+    it 'should be able to manage cpuexecutioncap' do
+      expect(provider.cpuexecutioncap).to eq("100")
+      expect(provider.cpuexecutioncap='50').to eq("50")
+      expect(provider.cpuexecutioncap).to eq("50")
+    end
+
+    it 'should be able to manage monitorcount' do
+      expect(provider.monitorcount).to eq("1")
+      expect(provider.monitorcount='4').to eq("4")
+      expect(provider.monitorcount).to eq("4")
+    end
+
+    it 'should be able to manage accelerate3d' do
+      expect(provider.accelerate3d).to eq("off")
+      expect(provider.accelerate3d='on').to eq("on")
+      expect(provider.accelerate3d).to eq("on")
+    end
+
+    it 'should be able to manage firmware' do
+      expect(provider.firmware).to eq("BIOS")
+      expect(provider.firmware='EFI').to eq("EFI")
+      expect(provider.firmware='EFI64').to eq("EFI64")
+      expect(provider.firmware='EFI32').to eq("EFI32")
+      expect(provider.firmware).to eq("EFI32") 
+    end
+
+    it 'should be able to manage boot1' do
+      expect(provider.boot1).to eq("floppy")
+      expect(provider.boot1='none').to eq("none")
+      expect(provider.boot1='dvd').to eq("dvd")
+      expect(provider.boot1='disk').to eq("disk")
+      expect(provider.boot1='floppy').to eq("floppy")
+      expect(provider.boot1='net').to eq("net")
+      expect(provider.boot1).to eq("net")
+    end
+
+    it 'should be able to manage boot2' do
+      expect(provider.boot1).to eq("net")
+      expect(provider.boot1='none').to eq("none")
+      expect(provider.boot1='dvd').to eq("dvd")
+      expect(provider.boot1='disk').to eq("disk")
+      expect(provider.boot1='floppy').to eq("floppy")
+      expect(provider.boot1='net').to eq("net")
+      expect(provider.boot1).to eq("net")
+    end
+
+    it 'should be able to manage boot3' do
+      expect(provider.boot1).to eq("net")
+      expect(provider.boot1='none').to eq("none")
+      expect(provider.boot1='dvd').to eq("dvd")
+      expect(provider.boot1='disk').to eq("disk")
+      expect(provider.boot1='floppy').to eq("floppy")
+      expect(provider.boot1='net').to eq("net")
+      expect(provider.boot1).to eq("net")
+    end
+
+    it 'should be able to manage boot4' do
+      expect(provider.boot1).to eq("net")
+      expect(provider.boot1='none').to eq("none")
+      expect(provider.boot1='dvd').to eq("dvd")
+      expect(provider.boot1='disk').to eq("disk")
+      expect(provider.boot1='floppy').to eq("floppy")
+      expect(provider.boot1='net').to eq("net")
+      expect(provider.boot1).to eq("net")
+    end
+
+    it 'should be able to manage a single NIC with only a mode' do
+      nic_value = {
+        1 => {
+          'mode' => 'nat'
+        }
+      }
+      expect(provider.nics=nic_value).to eq(nic_value)
+    end
+
+    it 'should be able to manage a single NIC with only a type' do
+      nic_value = {
+        1 => {
+          'type' => 'Am79C973'
+        }
+      }
+      expect(provider.nics=nic_value).to eq(nic_value)
+    end
+
+    it 'should be able to manage a single NIC with only a speed' do
+      nic_value = {
+        1 => {
+          'speed' => 1000
+        }
+      }
+      expect(provider.nics=nic_value).to eq(nic_value)
+    end
 
   end
 
