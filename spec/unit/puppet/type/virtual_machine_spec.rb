@@ -1,10 +1,20 @@
 #! /usr/bin/env ruby -S rspec
 require 'spec_helper'
 
+# WHAT IS THIS FOR?
+#
+# I realise that this probably seems a bit pointless.
+# The main purpose of these tests is to test all of the
+# things that users will rely on, i.e. defaults so that
+# if someone changes them it will fail a test.
+
 describe Puppet::Type.type(:virtual_machine) do
   # I'm not totally sure what this is for
   let :virtual_machine do
-    Puppet::Type::type(:virtual_machine).new(:name => 'foo', :ensure => 'present', :ostype => 'Other')
+    Puppet::Type::type(:virtual_machine).new(
+      :name => 'foo', 
+      :ensure => 'present', 
+      :ostype => 'Other')
   end
 
   it 'should accept valid ostypes' do
@@ -46,6 +56,14 @@ describe Puppet::Type.type(:virtual_machine) do
     expect(virtual_machine[:state]).to eq(:running)
   end
 
+  it 'should default the description' do
+    expect(virtual_machine[:description]).to eq("Managed by Puppet, do not modify settings using the VirtualBox GUI")
+  end
+
+  it 'should default the io_apic' do
+    expect(virtual_machine[:io_apic]).to eq('on')
+  end
+
   it 'should accept all valid states' do
     states = [:running, :poweroff]
     states.each do |state|
@@ -61,11 +79,4 @@ describe Puppet::Type.type(:virtual_machine) do
         :state => 'some_invalid_state')
     }.to raise_error
   end
-
-  # I'm going to stop here for now, it seems 
-  # like this testing is pretty pointless for 
-  # me at the moment. I can see that if you 
-  # were to change a param or whatever it would 
-  # be picked up here which is good but not 
-  # that useful for me now
 end
