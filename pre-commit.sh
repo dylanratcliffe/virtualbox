@@ -1,4 +1,5 @@
-# pre-commit.sh
+#!/bin/sh
+
 git stash -q --keep-index
 
 # Test prospective commit
