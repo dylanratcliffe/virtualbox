@@ -53,6 +53,7 @@ describe provider_class do
       expect(provider.pagefusion).to eq("off")
       # TODO: Pagefusion does not work on mac, need to work out how to make testes
       # robust enough to deal with this
+      
       #expect(provider.pagefusion='on').to eq("on")
     end
 
