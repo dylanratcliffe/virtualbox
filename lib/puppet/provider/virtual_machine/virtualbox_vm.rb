@@ -440,7 +440,6 @@ Puppet::Type.type(:virtual_machine).provide(:virtualbox_vm) do
       modifyvm('ioapic', value)
     end
 
-
     private
 
     def get_setting(setting)

@@ -17,6 +17,7 @@ virtual_machine { 'computer_1':
   virtual_machine { 'computer_2':
     ensure => present,
     ostype => 'Windows81_64',
+    groups => ['/group1'],
     memory => 2048,
     cpus   => 2
   }
@@ -26,6 +27,7 @@ virtual_machine { 'computer_1':
     ostype          => 'Other',
     register        => true,
     state           => 'running',
+    groups          => ['/group1', '/group2'],
     description     => 'Managed by puppet',
     memory          => 512,
     pagefusion      => 'off',
